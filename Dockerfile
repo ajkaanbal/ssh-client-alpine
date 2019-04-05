@@ -2,7 +2,11 @@ FROM alpine
 
 MAINTAINER ajkaanbal@gmail.com
 
-RUN apk add --no-cache \
-  openssh-client \
-  ca-certificates \
-  bash
+RUN addgroup -g 1000 user && \
+    adduser -D -u 1000 -G user user && \
+    apk add --no-cache \
+        openssh-client \
+        ca-certificates \
+        bash
+
+USER user
